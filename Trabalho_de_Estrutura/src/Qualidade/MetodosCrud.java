@@ -72,6 +72,7 @@ public class MetodosCrud {
 
 		//AQUI PEGA O NOME DO ARQUIVO PARA PODER FAZER A LEITURA //	
 			 File fileName =new File("Entrada.txt");
+			 String linha="";
 			 
 			 BufferedReader ler = new BufferedReader(new FileReader( fileName ));
 	         String line = ""; 
@@ -86,9 +87,10 @@ public class MetodosCrud {
 	             line = ler.readLine();
 	         }
 	         ler.close();
-
+             
+	         linha="\n O metodo READ levou : "+tempo_Final+ " para ser executado";
 	         tempo_Final=System.currentTimeMillis()-tempo_Inicial;
-	         write.write("\n O metodo READ levou : "+tempo_Final+ " para ser executado");
+	         write.write(linha);
 	         write.close();  
 
 		}
