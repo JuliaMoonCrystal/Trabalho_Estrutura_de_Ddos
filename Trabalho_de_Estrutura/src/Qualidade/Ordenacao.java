@@ -10,6 +10,10 @@ import java.util.LinkedList;
 public class Ordenacao {
 
 	public void Ordena_Quick(LinkedList<dados> dados_lista) throws IOException {
+
+	}
+
+	public void Ordena_Bubble(LinkedList<dados> dados_lista) throws IOException {
 		String fileName = "Bubblesort.txt";
 		BufferedWriter writer = new BufferedWriter(new FileWriter( fileName ));
 
@@ -29,19 +33,12 @@ public class Ordenacao {
 		writer.write("***ORDENADO DA REGIÃO COM O MENOR PARA O MAIOR INDICE***\n\n");
 		for(dados dado : dados_lista) {
 			Collections.sort(dados_lista, new Bubblesort());
-			System.out.println("Aqui a lista : "+dado.getRegiao()+" com indice de: "+dado.getDados_Regiao()+" de poluiï¿½ï¿½o  Qualidade do ar: "+dado.getQualidade()+"\n");
-			writer.write("Região : "+ dado.getRegiao()+" possui um nivel de : "+dado.getDados_Regiao()+" de poluiï¿½ï¿½o  Qualidade do Ar : "+dado.getQualidade()+"\n");
+			System.out.println("Aqui a lista : "+dado.getRegiao()+" com indice de: "+dado.getDados_Regiao()+" de poluição  Qualidade do ar: "+dado.getQualidade()+"\n");
+			writer.write("Região : "+ dado.getRegiao()+" possui um nivel de : "+dado.getDados_Regiao()+" de poluição  Qualidade do Ar : "+dado.getQualidade()+"\n");
 			writer.newLine();
 		}
-		writer.close();
-
-	}
-
-	public void Ordena_Bubble(LinkedList<dados> dados_lista) {
-		// TODO Auto-generated method stub
-		
-	}	
-		
+		writer.close();		
+	   }	
 	}
 
 

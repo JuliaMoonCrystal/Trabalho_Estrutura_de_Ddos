@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
 public class MetodosCrud {
 	
 	public LinkedList<dados> Create(LinkedList<dados> dados_lista) throws IOException {
-	  //AQUI USAMOS VAMOS CALCULAR O DESEMPENHO DO METODO//	
+	      //AQUI USAMOS VAMOS CALCULAR O DESEMPENHO DO METODO//	
 			long tempo_Inicial = System.currentTimeMillis();
 			long tempo_Final=0;
 
@@ -39,13 +39,13 @@ public class MetodosCrud {
 				 dados_lista.add(new dados(nova_regiao,novo_indice,nova_qualidade));
 			 }
 
-			// ADICIONA ALGUNS ELEMENTOS NA LINKEDLIST// 
+			// ADICIONA ALGUNS ELEMENTOS NA LINKEDLIST PARA DEMOSTRAÇÃO// 
 			 dados_lista.add(new dados("São Paulo",30,"N1-Boa"));
 			 dados_lista.add(new dados("Rio de Janeiro",40,"N1-Boa"));
 			 dados_lista.add(new dados("Baia",10,"N1-Boa"));
 			 dados_lista.add(new dados("Piaui",80,"N2-Moderada"));
-			 dados_lista.add(new dados("Rio Grande do Sul",60,"N2-Moderada"));      
-
+			 dados_lista.add(new dados("Rio Grande do Sul",60,"N2-Moderada")); 
+			 
 	        //Grava OS DADO NO ARQUIVO//  
 	        for(dados dado : dados_lista){
 	        	  System.out.println("Aqui a lista : "+dado.getRegiao()+" com indice de: "+dado.getDados_Regiao()+" de poluição  Qualidade do ar: "+dado.getQualidade()+"\n");	
@@ -88,7 +88,7 @@ public class MetodosCrud {
 	         ler.close();
 
 	         tempo_Final=System.currentTimeMillis()-tempo_Inicial;
-	         write.write("\n\n O metodo READ levou : "+tempo_Final+ " para ser executado");
+	         write.write("\n O metodo READ levou : "+tempo_Final+ " para ser executado");
 	         write.close();  
 
 		}
@@ -116,6 +116,8 @@ public class MetodosCrud {
 	        	  writer.newLine();	
 	        }         
 	        writer.close();
+	        dados_lista.clear();
+	        System.out.println("\n aqui os dados"+dados_lista);
 		}
 
 		public void Pesquisa(LinkedList<dados> dados_lista) {
