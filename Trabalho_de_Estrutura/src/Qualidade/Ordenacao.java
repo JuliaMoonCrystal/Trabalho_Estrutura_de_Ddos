@@ -11,10 +11,45 @@ import com.sun.xml.internal.bind.v2.model.annotation.Quick;
 
 public class Ordenacao {
 
-	public void Ordena_Quick(LinkedList<dados> dados_lista)  {
+	public void Ordena_Selection(LinkedList<Integer> vetor) throws IOException  {
+	
+		 vetor.add(10);
+		 vetor.add(30);
+	     vetor.add(30);
+	     vetor.add(80);
+	     vetor.add(60);
+	     
+	        String fileName = "Selectonsort.txt";
+			BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
+			// o método size() retorna o tamanho de uma lista
+			// (é o equivale ao length do array)
+			for (int i = 0; i < vetor.size(); i++) {
+				int posicaoMenor = i;
+				for (int j = (i + 1); j < vetor.size(); j++) {
+					//o método get() acessa o valor em uma determinada posição da lista
+					//é o equivalente ao vetor[j] do array
+					if (vetor.get(j) < vetor.get(posicaoMenor)) {
+						posicaoMenor = j;
+					}
+				}
+				if (vetor.get(i) != vetor.get(posicaoMenor)) {
+					int temp = vetor.get(i);
+					//o método set() substitui um valor por outro em
+					//uma determinada posição da lista
+					//o primeiro parâmetro é onde eu quero mudar,
+					//o segundo é o que eu quero colocar no lugar
+					vetor.set(i, vetor.get(posicaoMenor));
+					vetor.set(posicaoMenor, temp);
+				}
 
-	
-	
+			}
+			for (int i = 0; i < vetor.size(); i++) {
+				System.out.println(vetor.get(i));
+				writer.write(String.valueOf(vetor));
+				writer.newLine();
+			}
+
+			writer.close();
 	
 	}
 
@@ -43,7 +78,8 @@ public class Ordenacao {
 			writer.newLine();
 		}
 		writer.close();		
-	   }	
+	   }
+
 	}
 
 

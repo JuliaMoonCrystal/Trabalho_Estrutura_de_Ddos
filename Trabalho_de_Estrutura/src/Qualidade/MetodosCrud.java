@@ -18,11 +18,11 @@ public class MetodosCrud {
 			long tempo_Inicial = System.currentTimeMillis();
 			long tempo_Final=0;
             
-		  //ESSE INDICE VAI AJUDAR NA HORA DE FAZER UPDATE NA LISTA// 
+		  //ESSE INDICE VAI AJUDAR NA HORA DE DEMOSNTRAR O UPDATE NA LISTA// 
 			int indice=0;
 			
 		  //AQUI CRIAMOS O ARQUIVO DESENPENHO.LOG PARA GUARDAR O TEMPO DE DESENPENHO// 	
-			 String file_desempenho="Desempenho.log4j";
+			 String file_desempenho="Desempenho_Create.log4j";
 			 BufferedWriter write = new BufferedWriter(new FileWriter( file_desempenho ));
 
 			//Aqui tem a criação do arquivo //
@@ -73,7 +73,7 @@ public class MetodosCrud {
 			 long tempo_Inicial = System.currentTimeMillis();
 			 long tempo_Final=0;	
 
-			 String file_desempenho="Desempenho.log4j";
+			 String file_desempenho="Desempenho_Read.log4j";
 			 BufferedWriter write = new BufferedWriter(new FileWriter( file_desempenho ));
 			
 			 
@@ -103,6 +103,12 @@ public class MetodosCrud {
 
 		public LinkedList<dados> Update(LinkedList<dados> dados_lista) throws IOException {
             
+			 long tempo_Inicial = System.currentTimeMillis();
+			 long tempo_Final=0;	
+
+			 String file_desempenho="Desempenho_Update.log4j";
+			 BufferedWriter write = new BufferedWriter(new FileWriter( file_desempenho ));
+			
 			//Aqui le o arquivo mostrando as opções na tela para o usuario escolher//
 			     File fileName =new File("Entrada.txt");
 			     BufferedReader ler = new BufferedReader(new FileReader( fileName ));
@@ -135,17 +141,28 @@ public class MetodosCrud {
 				  }
                 for(dados dado : dados_lista){  
                 System.out.println("Lista Atualizada : "+dado.getRegiao()+" , "+dado.getDados_Regiao()+" , "+dado.getQualidade());
-               // writer.write(" \\n-");
                 writer.write("Lista Atualizada :"+dado.getRegiao()+ " , "+dado.getDados_Regiao()+" , "+dado.getQualidade());
                 writer.newLine();
                 }
                 writer.close();
                 
+                tempo_Final=System.currentTimeMillis()-tempo_Inicial;
+  	            write.newLine();
+  	            write.write(" O metodo Update leva :"+tempo_Final+" ms para ser executado");
+  	         
+  	            write.close();
+                
 			return dados_lista;
 		}
 
 		public void Delete(LinkedList<dados> dados_lista) throws IOException {
+                 
+			 long tempo_Inicial = System.currentTimeMillis();
+			 long tempo_Final=0;	
 
+			 String file_desempenho="Desempenho_Delete.log4j";
+			 BufferedWriter write = new BufferedWriter(new FileWriter( file_desempenho ));
+			
 			//AQUI PEGAMOS O ARQUIVO E CRIAMOS UMA VARIAVEL STRING EM BRANCO //
 			  String fileName = "Entrada.txt";
 			  BufferedWriter writer = new BufferedWriter(new FileWriter( fileName ));
@@ -159,11 +176,42 @@ public class MetodosCrud {
 	        }         
 	        writer.close();
 	        dados_lista.clear();
-	        JOptionPane.showInternalMessageDialog(null,"Dados apagados com sucesso do arquivo ");
+	        
+	            tempo_Final=System.currentTimeMillis()-tempo_Inicial;
+	            write.newLine();
+	            write.write(" O metodo Delete leva :"+tempo_Final+" ms para ser executado");
+	         
+	            write.close();
+	            
+	        JOptionPane.showMessageDialog(null,"Dados apagados com sucesso do arquivo ");
 		}
 
-		public void Pesquisa(LinkedList<dados> dados_lista) {
-            
+		public void Pesquisa(LinkedList<dados> dados_lista) throws IOException {
 			
+   			 long tempo_Inicial = System.currentTimeMillis();
+			 long tempo_Final=0;	
+
+			 String file_desempenho="Desempenho_Pesquisa.log4j";
+			 BufferedWriter write = new BufferedWriter(new FileWriter( file_desempenho ));
+			
+			
+			String arq=JOptionPane.showInputDialog("Em qual arquivo você quer pesquisar ? \n- Entrada.txt \n-Bubblesort.txt \n -Selectonsort.txt");
+            String nome_Regiao=JOptionPane.showInputDialog("DIgite o nome da região que você quer pesquisar");
+			
+			BufferedReader reader = new BufferedReader (new FileReader(new File(arq)));
+			String linha;
+				while ((linha = reader .readLine()) != null) {
+			              if(linha.contains(nome_Regiao)){
+			            	  if(linha.contains(nome_Regiao)){   
+			            	  JOptionPane.showMessageDialog(null, "Este dado está neste arquivo "+arq);
+			              }
+			           }
+				  }
+				 JOptionPane.showMessageDialog(null, "Este dado não está neste arquivo "+arq);
+		    
+				 tempo_Final=System.currentTimeMillis()-tempo_Inicial;
+		            write.newLine();
+		            write.write(" O metodo Pesquisa leva :"+tempo_Final+" ms para ser executado");
+		            write.close();
 		}
 }
