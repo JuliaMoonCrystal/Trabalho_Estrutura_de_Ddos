@@ -3,6 +3,7 @@ package Qualidade;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -16,7 +17,10 @@ public class MetodosCrud {
 	      //AQUI USAMOS VAMOS CALCULAR O DESEMPENHO DO METODO//	
 			long tempo_Inicial = System.currentTimeMillis();
 			long tempo_Final=0;
-
+            
+		  //ESSE INDICE VAI AJUDAR NA HORA DE FAZER UPDATE NA LISTA// 
+			int indice=0;
+			
 		  //AQUI CRIAMOS O ARQUIVO DESENPENHO.LOG PARA GUARDAR O TEMPO DE DESENPENHO// 	
 			 String file_desempenho="Desempenho.log4j";
 			 BufferedWriter write = new BufferedWriter(new FileWriter( file_desempenho ));
@@ -49,23 +53,25 @@ public class MetodosCrud {
 	        //Grava OS DADO NO ARQUIVO//  
 	        for(dados dado : dados_lista){
 	        	  System.out.println("Aqui a lista : "+dado.getRegiao()+" com indice de: "+dado.getDados_Regiao()+" de poluição  Qualidade do ar: "+dado.getQualidade()+"\n");	
-	        	  writer.write("Região : "+ dado.getRegiao()+" possui um nivel de : "+dado.getDados_Regiao()+" de poluição  Qualidade do Ar : "+dado.getQualidade()+"\n");  	
+	        	  writer.write("Região :"+indice+" "+ dado.getRegiao()+" possui um nivel de : "+dado.getDados_Regiao()+" de poluição  Qualidade do Ar : "+dado.getQualidade()+"\n");  	
+	        	  indice++;
 	        	  writer.newLine();	
 	        }         
 	        writer.close();
 
 	      //AQUI ELE GRAVA O TEMPO QUE LEVOU PARA A GRAVAÇÃO DO ARQUIVO TERMINAR// 
 	        tempo_Final=System.currentTimeMillis()-tempo_Inicial;
-	        write.write(" O metodo CREATE levou : "+tempo_Final+ " para ser executado");
+	        write.write(" O metodo CREATE levou : "+tempo_Final+ " para ser executado\\n");
 	        write.close();
 
+	        JOptionPane.showMessageDialog(null,"Lista Criada e populada com sucesso");
 			return dados_lista;
 		}
 
 		public void Read(LinkedList<dados> dados_lista) throws IOException {
 
-			long tempo_Inicial = System.currentTimeMillis();
-			long tempo_Final=0;	
+			 long tempo_Inicial = System.currentTimeMillis();
+			 long tempo_Final=0;	
 
 			 String file_desempenho="Desempenho.log4j";
 			 BufferedWriter write = new BufferedWriter(new FileWriter( file_desempenho ));
@@ -88,20 +94,54 @@ public class MetodosCrud {
 	         }
 	         ler.close();
              
-	         linha="\n O metodo READ levou : "+tempo_Final+ " para ser executado";
+	         linha="\\n\n O metodo READ levou : "+tempo_Final+ " para ser executado";
 	         tempo_Final=System.currentTimeMillis()-tempo_Inicial;
 	         write.write(linha);
 	         write.close();  
 
 		}
 
-		public LinkedList<dados> Update(LinkedList<dados> dados_lista) {
-
-
-
-
-
-			return null;
+		public LinkedList<dados> Update(LinkedList<dados> dados_lista) throws IOException {
+            
+			//Aqui le o arquivo mostrando as opções na tela para o usuario escolher//
+			     File fileName =new File("Entrada.txt");
+			     BufferedReader ler = new BufferedReader(new FileReader( fileName ));
+			     
+				 String line="";
+				 String linha="";
+				 
+				 System.out.println("Escolha pela região qual dado você quer alterar ?\n ");
+				 while (true) {
+		             if (line != null) {
+		                System.out.println(line);
+		             } else
+		                 break;
+		             line = ler.readLine();
+		         }
+		         ler.close();
+		         
+		        
+		       //Aqui é onde realmente acontece o update da lista//  
+		         int in=Integer.parseInt(JOptionPane.showInputDialog(null,"Digite o número da região"));
+		         String nova_regiao=JOptionPane.showInputDialog("Digite uma Região de São Paulo :");
+				 double novo_indice=Double.parseDouble(JOptionPane.showInputDialog("Digite o indice de poluição :"));
+				 String nova_qualidade=JOptionPane.showInputDialog("Digite a qualidade do ar :");
+			     
+			     dados_lista.set(in,new dados(nova_regiao,novo_indice,nova_qualidade) );
+			     
+			     BufferedWriter writer = new BufferedWriter(new FileWriter( fileName ));
+				  if(fileName.exists()) {
+					  fileName.delete();
+				  }
+                for(dados dado : dados_lista){  
+                System.out.println("Lista Atualizada : "+dado.getRegiao()+" , "+dado.getDados_Regiao()+" , "+dado.getQualidade());
+                writer.write(" \\n------------------------");
+                writer.write("Lista Atualizada :"+dado.getRegiao()+ " , "+dado.getDados_Regiao()+" , "+dado.getQualidade());
+                writer.newLine();
+                }
+                writer.close();
+                
+			return dados_lista;
 		}
 
 		public void Delete(LinkedList<dados> dados_lista) throws IOException {
@@ -119,7 +159,7 @@ public class MetodosCrud {
 	        }         
 	        writer.close();
 	        dados_lista.clear();
-	        System.out.println("\n aqui os dados"+dados_lista);
+	        JOptionPane.showInternalMessageDialog(null,"Dados apagados com sucesso do arquivo ");
 		}
 
 		public void Pesquisa(LinkedList<dados> dados_lista) {
