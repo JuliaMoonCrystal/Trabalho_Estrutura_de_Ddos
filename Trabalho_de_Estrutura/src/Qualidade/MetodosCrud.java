@@ -44,9 +44,9 @@ public class MetodosCrud {
 			 }
 
 			// ADICIONA ALGUNS ELEMENTOS NA LINKEDLIST PARA DEMOSTRAÇÃO// 
-			 dados_lista.add(new dados("São Paulo",30,"N1-Boa"));
-			 dados_lista.add(new dados("Rio de Janeiro",40,"N1-Boa"));
-			 dados_lista.add(new dados("Baia",10,"N1-Boa"));
+			 dados_lista.add(new dados("São Paulo",10,"N1-Boa"));
+			 dados_lista.add(new dados("Rio de Janeiro",30,"N1-Boa"));
+			 dados_lista.add(new dados("Baia",30,"N1-Boa"));
 			 dados_lista.add(new dados("Piaui",80,"N2-Moderada"));
 			 dados_lista.add(new dados("Rio Grande do Sul",60,"N2-Moderada")); 
 			 
@@ -61,7 +61,7 @@ public class MetodosCrud {
 
 	      //AQUI ELE GRAVA O TEMPO QUE LEVOU PARA A GRAVAÇÃO DO ARQUIVO TERMINAR// 
 	        tempo_Final=System.currentTimeMillis()-tempo_Inicial;
-	        write.write(" O metodo CREATE levou : "+tempo_Final+ " para ser executado\\n");
+	        write.write(" O metodo CREATE levou : "+tempo_Final+ " ms para ser executado");
 	        write.close();
 
 	        JOptionPane.showMessageDialog(null,"Lista Criada e populada com sucesso");
@@ -75,10 +75,10 @@ public class MetodosCrud {
 
 			 String file_desempenho="Desempenho.log4j";
 			 BufferedWriter write = new BufferedWriter(new FileWriter( file_desempenho ));
-
+			
+			 
 		//AQUI PEGA O NOME DO ARQUIVO PARA PODER FAZER A LEITURA //	
 			 File fileName =new File("Entrada.txt");
-			 String linha="";
 			 
 			 BufferedReader ler = new BufferedReader(new FileReader( fileName ));
 	         String line = ""; 
@@ -91,13 +91,13 @@ public class MetodosCrud {
 	             } else
 	                 break;
 	             line = ler.readLine();
-	         }
+	           }
 	         ler.close();
-             
-	         linha="\\n\n O metodo READ levou : "+tempo_Final+ " para ser executado";
-	         tempo_Final=System.currentTimeMillis()-tempo_Inicial;
-	         write.write(linha);
-	         write.close();  
+	          tempo_Final=System.currentTimeMillis()-tempo_Inicial;
+	          write.newLine();
+	          write.write(" O metodo Read leva :"+tempo_Final+" ms para ser executado");
+	         
+	      write.close();  
 
 		}
 
@@ -135,7 +135,7 @@ public class MetodosCrud {
 				  }
                 for(dados dado : dados_lista){  
                 System.out.println("Lista Atualizada : "+dado.getRegiao()+" , "+dado.getDados_Regiao()+" , "+dado.getQualidade());
-                writer.write(" \\n------------------------");
+               // writer.write(" \\n-");
                 writer.write("Lista Atualizada :"+dado.getRegiao()+ " , "+dado.getDados_Regiao()+" , "+dado.getQualidade());
                 writer.newLine();
                 }
@@ -163,7 +163,7 @@ public class MetodosCrud {
 		}
 
 		public void Pesquisa(LinkedList<dados> dados_lista) {
-			// TODO Auto-generated method stub
-
+            
+			
 		}
 }

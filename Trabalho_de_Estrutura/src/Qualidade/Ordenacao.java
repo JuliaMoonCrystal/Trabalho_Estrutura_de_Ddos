@@ -7,10 +7,15 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.LinkedList;
 
+import com.sun.xml.internal.bind.v2.model.annotation.Quick;
+
 public class Ordenacao {
 
-	public void Ordena_Quick(LinkedList<dados> dados_lista) throws IOException {
+	public void Ordena_Quick(LinkedList<dados> dados_lista)  {
 
+	
+	
+	
 	}
 
 	public void Ordena_Bubble(LinkedList<dados> dados_lista) throws IOException {
@@ -30,10 +35,10 @@ public class Ordenacao {
 			}
 		}
         
-		writer.write("***ORDENADO DA REGIÃO COM O MENOR PARA O MAIOR INDICE***\n\n");
+		writer.write("***ORDENADO DA REGIÃO COM O MENOR PARA O MAIOR INDICE DE POLUIÇÃO***\n\n");
 		for(dados dado : dados_lista) {
 			Collections.sort(dados_lista, new Bubblesort());
-			System.out.println("Aqui a lista : "+dado.getRegiao()+" com indice de: "+dado.getDados_Regiao()+" de poluição  Qualidade do ar: "+dado.getQualidade()+"\n");
+			System.out.println(" \n Aqui a lista ordenada: "+dado.getRegiao()+" com indice de: "+dado.getDados_Regiao()+" de poluição  Qualidade do ar: "+dado.getQualidade()+"\n");
 			writer.write("Região : "+ dado.getRegiao()+" possui um nivel de : "+dado.getDados_Regiao()+" de poluição  Qualidade do Ar : "+dado.getQualidade()+"\n");
 			writer.newLine();
 		}
