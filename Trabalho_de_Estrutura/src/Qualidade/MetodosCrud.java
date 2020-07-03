@@ -25,41 +25,41 @@ public class MetodosCrud {
 			 String file_desempenho="Desempenho_Create.log4j";
 			 BufferedWriter write = new BufferedWriter(new FileWriter( file_desempenho ));
 
-			//Aqui tem a criação do arquivo //
+			//Aqui tem a criaï¿½ï¿½o do arquivo //
 			  File fileName = new File("Entrada.txt");
-			  BufferedWriter writer = new BufferedWriter(new FileWriter( fileName ));
-			  if(fileName.exists()) {
-				  fileName.delete();
-			  }
+			  BufferedWriter writer = new BufferedWriter(new FileWriter( fileName, true ));
+//			  if(fileName.exists()) {
+//				  fileName.delete();
+//			  }
 			//aqui pergunta ao usauario quantos novos dados ele ira adicionar na lista//
-			  int novo_elemento=Integer.parseInt(JOptionPane.showInputDialog("Quantos novos dados você quer adicionar na lista ?"));
+			  int novo_elemento=Integer.parseInt(JOptionPane.showInputDialog("Quantos novos dados vocÃª quer adicionar na lista ?"));
 
-			//aqui existe um laço para o usuario digitar as variaveis//  
+			//aqui existe um laï¿½o para o usuario digitar as variaveis//  
 			 for(int i=0;i<novo_elemento;i++){
-				 String nova_regiao=JOptionPane.showInputDialog("Digite uma Região de São Paulo :");
-				 double novo_indice=Double.parseDouble(JOptionPane.showInputDialog("Digite o indice de poluição :"));
+				 String nova_regiao=JOptionPane.showInputDialog("Digite uma RegiÃ£o de SÃ£o Paulo :");
+				 double novo_indice=Double.parseDouble(JOptionPane.showInputDialog("Digite o indice de poluiÃ§Ã£o :"));
 				 String nova_qualidade=JOptionPane.showInputDialog("Digite a qualidade do ar :");
 
 				 dados_lista.add(new dados(nova_regiao,novo_indice,nova_qualidade));
 			 }
 
-			// ADICIONA ALGUNS ELEMENTOS NA LINKEDLIST PARA DEMOSTRAÇÃO// 
-			 dados_lista.add(new dados("São Paulo",10,"N1-Boa"));
-			 dados_lista.add(new dados("Rio de Janeiro",30,"N1-Boa"));
-			 dados_lista.add(new dados("Baia",30,"N1-Boa"));
-			 dados_lista.add(new dados("Piaui",80,"N2-Moderada"));
-			 dados_lista.add(new dados("Rio Grande do Sul",60,"N2-Moderada")); 
+			// ADICIONA ALGUNS ELEMENTOS NA LINKEDLIST PARA DEMOSTRAï¿½ï¿½O// 
+//			 dados_lista.add(new dados("SÃ£o Paulo",10,"N1-Boa"));
+//			 dados_lista.add(new dados("Rio de Janeiro",30,"N1-Boa"));
+//			 dados_lista.add(new dados("Baia",30,"N1-Boa"));
+//			 dados_lista.add(new dados("Piaui",80,"N2-Moderada"));
+//			 dados_lista.add(new dados("Rio Grande do Sul",60,"N2-Moderada"));
 			 
 	        //Grava OS DADO NO ARQUIVO//  
 	        for(dados dado : dados_lista){
-	        	  System.out.println("Aqui a lista : "+dado.getRegiao()+" com indice de: "+dado.getDados_Regiao()+" de poluição  Qualidade do ar: "+dado.getQualidade()+"\n");	
-	        	  writer.write("Região :"+indice+" "+ dado.getRegiao()+" possui um nivel de : "+dado.getDados_Regiao()+" de poluição  Qualidade do Ar : "+dado.getQualidade()+"\n");  	
+	        	  System.out.println("Aqui a lista : "+dado.getRegiao()+" com indice de: "+dado.getDados_Regiao()+" de poluiÃ§Ã£o  Qualidade do ar: "+dado.getQualidade()+"\n");
+	        	  writer.write("RegiÃ£o :"+indice+" "+ dado.getRegiao()+" possui um nivel de : "+dado.getDados_Regiao()+" de poluiÃ§Ã£o  Qualidade do Ar : "+dado.getQualidade()+"\n");
 	        	  indice++;
 	        	  writer.newLine();	
 	        }         
 	        writer.close();
 
-	      //AQUI ELE GRAVA O TEMPO QUE LEVOU PARA A GRAVAÇÃO DO ARQUIVO TERMINAR// 
+	      //AQUI ELE GRAVA O TEMPO QUE LEVOU PARA A GRAVAï¿½ï¿½O DO ARQUIVO TERMINAR// 
 	        tempo_Final=System.currentTimeMillis()-tempo_Inicial;
 	        write.write(" O metodo CREATE levou : "+tempo_Final+ " ms para ser executado");
 	        write.close();
@@ -97,7 +97,7 @@ public class MetodosCrud {
 	          write.newLine();
 	          write.write(" O metodo Read leva :"+tempo_Final+" ms para ser executado");
 	         
-	      write.close();  
+	      write.close();
 
 		}
 
@@ -109,14 +109,14 @@ public class MetodosCrud {
 			 String file_desempenho="Desempenho_Update.log4j";
 			 BufferedWriter write = new BufferedWriter(new FileWriter( file_desempenho ));
 			
-			//Aqui le o arquivo mostrando as opções na tela para o usuario escolher//
+			//Aqui le o arquivo mostrando as opï¿½ï¿½es na tela para o usuario escolher//
 			     File fileName =new File("Entrada.txt");
 			     BufferedReader ler = new BufferedReader(new FileReader( fileName ));
 			     
 				 String line="";
 				 String linha="";
 				 
-				 System.out.println("Escolha pela região qual dado você quer alterar ?\n ");
+				 System.out.println("Escolha pela regiï¿½o qual dado vocï¿½ quer alterar ?\n ");
 				 while (true) {
 		             if (line != null) {
 		                System.out.println(line);
@@ -127,18 +127,19 @@ public class MetodosCrud {
 		         ler.close();
 		         
 		        
-		       //Aqui é onde realmente acontece o update da lista//  
-		         int in=Integer.parseInt(JOptionPane.showInputDialog(null,"Digite o número da região"));
-		         String nova_regiao=JOptionPane.showInputDialog("Digite uma Região de São Paulo :");
-				 double novo_indice=Double.parseDouble(JOptionPane.showInputDialog("Digite o indice de poluição :"));
+		       //Aqui ï¿½ onde realmente acontece o update da lista//  
+		         int in=Integer.parseInt(JOptionPane.showInputDialog(null,"Digite o nÃºmero da regiÃ£o"));
+		         String nova_regiao=JOptionPane.showInputDialog("Digite uma RegiÃ£o de SÃ£o Paulo :");
+				 double novo_indice=Double.parseDouble(JOptionPane.showInputDialog("Digite o indice de poluiÃ§Ã£o :"));
 				 String nova_qualidade=JOptionPane.showInputDialog("Digite a qualidade do ar :");
 			     
-			     dados_lista.set(in,new dados(nova_regiao,novo_indice,nova_qualidade) );
+			     dados_lista.set(in, new dados(nova_regiao,novo_indice,nova_qualidade) );
 			     
-			     BufferedWriter writer = new BufferedWriter(new FileWriter( fileName ));
-				  if(fileName.exists()) {
-					  fileName.delete();
-				  }
+			     BufferedWriter writer = new BufferedWriter(new FileWriter( fileName, false ));
+//				  if(fileName.exists()) {
+//					  fileName.delete();
+//				  }
+
                 for(dados dado : dados_lista){  
                 System.out.println("Lista Atualizada : "+dado.getRegiao()+" , "+dado.getDados_Regiao()+" , "+dado.getQualidade());
                 writer.write("Lista Atualizada :"+dado.getRegiao()+ " , "+dado.getDados_Regiao()+" , "+dado.getQualidade());
@@ -195,19 +196,19 @@ public class MetodosCrud {
 			 BufferedWriter write = new BufferedWriter(new FileWriter( file_desempenho ));
 			
 			
-			String arq=JOptionPane.showInputDialog("Em qual arquivo você quer pesquisar ? \n- Entrada.txt \n-Bubblesort.txt \n -Selectonsort.txt");
-            String nome_Regiao=JOptionPane.showInputDialog("DIgite o nome da região que você quer pesquisar");
+			String arq=JOptionPane.showInputDialog("Em qual arquivo vocÃª quer pesquisar ? \n- Entrada.txt \n-Bubblesort.txt \n -Selectonsort.txt");
+            String nome_Regiao=JOptionPane.showInputDialog("Digite o nome da regiÃ£o que vocÃª quer pesquisar");
 			
 			BufferedReader reader = new BufferedReader (new FileReader(new File(arq)));
 			String linha;
 				while ((linha = reader .readLine()) != null) {
 			              if(linha.contains(nome_Regiao)){
 			            	  if(linha.contains(nome_Regiao)){   
-			            	  JOptionPane.showMessageDialog(null, "Este dado está neste arquivo "+arq);
+			            	  JOptionPane.showMessageDialog(null, "Este dado estÃ¡ neste arquivo "+arq);
 			              }
 			           }
 				  }
-				 JOptionPane.showMessageDialog(null, "Este dado não está neste arquivo "+arq);
+				 JOptionPane.showMessageDialog(null, "Este dado nÃ£o estÃ¡ neste arquivo "+arq);
 		    
 				 tempo_Final=System.currentTimeMillis()-tempo_Inicial;
 		            write.newLine();

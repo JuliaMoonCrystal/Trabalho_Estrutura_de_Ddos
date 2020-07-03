@@ -7,7 +7,7 @@ import javax.swing.JOptionPane;
 
 public class Principal {
 	 public static void main(String [] args) throws IOException{
-		  //Nesta Classe vai apresentar todas as opções que o usuario pode escolher//
+		  //Nesta Classe vai apresentar todas as opï¿½ï¿½es que o usuario pode escolher//
 		  int opc=0;
 		  LinkedList<dados> dados_lista= new LinkedList<>();
           
@@ -16,10 +16,12 @@ public class Principal {
 			  opc = Integer.parseInt(JOptionPane.showInputDialog("-----------Dados_da_qualidade_do_ar----------- \n1 -Create Dados- "
 			  		+ "\n2 -Read- \n3 -Update- \n4 -Delete- \n5 -Ordena por SelectonSort-  \n6 -Ordena por BubbleSort- \n7 Pesquisa na lista"
 			  		+ " \n8 -Hash "
-			  		+"\n9 -Finalizar consulta"));
+					  + "\n9 - Hash Linked List "
+			  		+"\n0 -Finalizar consulta"));
 	           MetodosCrud metodos =new MetodosCrud();
 	           Ordenacao ordena=new Ordenacao();
-	           Hash_regioes hr= new Hash_regioes();
+	           HashRegioes hr= new HashRegioes();
+	           HashLinkedList hl = new HashLinkedList(40);
 	            switch (opc)
 	            {
 	                  case 1: dados_lista =metodos.Create(dados_lista);
@@ -36,12 +38,13 @@ public class Principal {
 	                             break;
 	                  case 7: metodos.Pesquisa(dados_lista);
 	                             break;
-	                  case 8: hr.InsereRegioes(dados_lista);
-	                             break;            
-
-	                  case 9: JOptionPane.showMessageDialog(null,"-----FIM-----");
+	                  case 8: hr.insereRegioes(dados_lista);
+	                             break;
+					  case 9 : hl.iniciar();
+					  			break;
+	                  case 0: JOptionPane.showMessageDialog(null,"-----FIM-----");
 	                             break;             
-	                  default: JOptionPane.showMessageDialog(null,"opc inválida");
+	                  default: JOptionPane.showMessageDialog(null,"opc invÃ¡lida");
 	            }
 	        }
 	      while(opc != 9);

@@ -7,49 +7,48 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.LinkedList;
 
-import com.sun.xml.internal.bind.v2.model.annotation.Quick;
 
 public class Ordenacao {
 
 	public void Ordena_Selection(LinkedList<Integer> vetor) throws IOException  {
-	
-		 vetor.add(10);
-		 vetor.add(30);
-	     vetor.add(30);
-	     vetor.add(80);
-	     vetor.add(60);
+
+		vetor.add(30);
+		vetor.add(10);
+		vetor.add(80);
+		vetor.add(30);
+		vetor.add(60);
 	     
-	        String fileName = "Selectonsort.txt";
-			BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
-			// o método size() retorna o tamanho de uma lista
-			// (é o equivale ao length do array)
-			for (int i = 0; i < vetor.size(); i++) {
-				int posicaoMenor = i;
-				for (int j = (i + 1); j < vetor.size(); j++) {
-					//o método get() acessa o valor em uma determinada posição da lista
-					//é o equivalente ao vetor[j] do array
-					if (vetor.get(j) < vetor.get(posicaoMenor)) {
-						posicaoMenor = j;
-					}
+		String fileName = "Selectonsort.txt";
+		BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
+		// o mÃ©todo size() retorna o tamanho de uma lista
+		// (Ã© o equivale ao length do array)
+		for (int i = 0; i < vetor.size(); i++) {
+			int posicaoMenor = i;
+			for (int j = (i + 1); j < vetor.size(); j++) {
+				//o mÃ©todo get() acessa o valor em uma determinada posiÃ§Ã£o da lista
+				//Ã© o equivalente ao vetor[j] do array
+				if (vetor.get(j) < vetor.get(posicaoMenor)) {
+					posicaoMenor = j;
 				}
-				if (vetor.get(i) != vetor.get(posicaoMenor)) {
-					int temp = vetor.get(i);
-					//o método set() substitui um valor por outro em
-					//uma determinada posição da lista
-					//o primeiro parâmetro é onde eu quero mudar,
-					//o segundo é o que eu quero colocar no lugar
-					vetor.set(i, vetor.get(posicaoMenor));
-					vetor.set(posicaoMenor, temp);
-				}
-
 			}
-			for (int i = 0; i < vetor.size(); i++) {
-				System.out.println(vetor.get(i));
-				writer.write(String.valueOf(vetor));
-				writer.newLine();
+			if (vetor.get(i) != vetor.get(posicaoMenor)) {
+				int temp = vetor.get(i);
+				//o mÃ©todo set() substitui um valor por outro emdados_lista
+				//uma determinada posiÃ§Ã£o da lista
+				//o primeiro parÃ¢metro Ã© onde eu quero mudar,
+				//o segundo Ã© o que eu quero colocar no lugar
+				vetor.set(i, vetor.get(posicaoMenor));
+				vetor.set(posicaoMenor, temp);
 			}
 
-			writer.close();
+		}
+		for (int i = 0; i < vetor.size(); i++) {
+			System.out.println(vetor.get(i));
+			writer.write(String.valueOf(vetor));
+			writer.newLine();
+		}
+
+		writer.close();
 	
 	}
 
@@ -70,11 +69,11 @@ public class Ordenacao {
 			}
 		}
         
-		writer.write("***ORDENADO DA REGIÃO COM O MENOR PARA O MAIOR INDICE DE POLUIÇÃO***\n\n");
+		writer.write("***ORDENADO DA REGIÃƒO COM O MENOR PARA O MAIOR INDICE DE POLUIÃ‡ÃƒO***\n\n");
 		for(dados dado : dados_lista) {
 			Collections.sort(dados_lista, new Bubblesort());
-			System.out.println(" \n Aqui a lista ordenada: "+dado.getRegiao()+" com indice de: "+dado.getDados_Regiao()+" de poluição  Qualidade do ar: "+dado.getQualidade()+"\n");
-			writer.write("Região : "+ dado.getRegiao()+" possui um nivel de : "+dado.getDados_Regiao()+" de poluição  Qualidade do Ar : "+dado.getQualidade()+"\n");
+			System.out.println(" \n Aqui a lista ordenada: "+dado.getRegiao()+" com indice de: "+dado.getDados_Regiao()+" de poluiÃ§Ã£o  Qualidade do ar: "+dado.getQualidade()+"\n");
+			writer.write("RegiÃ£o : "+ dado.getRegiao()+" possui um nivel de : "+dado.getDados_Regiao()+" de poluiÃ§Ã£o  Qualidade do Ar : "+dado.getQualidade()+"\n");
 			writer.newLine();
 		}
 		writer.close();		
